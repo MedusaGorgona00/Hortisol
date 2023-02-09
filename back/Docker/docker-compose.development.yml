@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  hortisol:
+    container_name: hortisol
+    image: hub.timelysoft.org/hortisol:development
+    restart: always
+    ports:
+        - 5000:80
+    build:
+      context: .
+      dockerfile: hortisol/Dockerfile
+    environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - DOTNET_ENVIRONMENT=Development
+    volumes:
+            - /docker/hortisol/staticfiles:/app/Files

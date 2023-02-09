@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{D66514D4-9DCC-489B-A426-70A3282F033A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{E3A5170C-0897-4BEB-AC74-2B885838CD16}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{7943A557-E78E-457B-8AE6-42DA9183E639}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{79B491F9-C2BA-4467-9E35-D409D271F6F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{11BF9B9D-F9AF-4290-A3F2-5DE0FB439D2C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "Docker", "Docker\Docker.dcproj", "{8356F33E-C296-498C-A580-54D514391F3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetExcel", "NetExcel\NetExcel.csproj", "{A151F75C-C87F-49FC-B1DE-568906F5C56E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D66514D4-9DCC-489B-A426-70A3282F033A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D66514D4-9DCC-489B-A426-70A3282F033A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D66514D4-9DCC-489B-A426-70A3282F033A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D66514D4-9DCC-489B-A426-70A3282F033A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A5170C-0897-4BEB-AC74-2B885838CD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A5170C-0897-4BEB-AC74-2B885838CD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A5170C-0897-4BEB-AC74-2B885838CD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A5170C-0897-4BEB-AC74-2B885838CD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7943A557-E78E-457B-8AE6-42DA9183E639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7943A557-E78E-457B-8AE6-42DA9183E639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7943A557-E78E-457B-8AE6-42DA9183E639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7943A557-E78E-457B-8AE6-42DA9183E639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B491F9-C2BA-4467-9E35-D409D271F6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B491F9-C2BA-4467-9E35-D409D271F6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B491F9-C2BA-4467-9E35-D409D271F6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B491F9-C2BA-4467-9E35-D409D271F6F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11BF9B9D-F9AF-4290-A3F2-5DE0FB439D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BF9B9D-F9AF-4290-A3F2-5DE0FB439D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BF9B9D-F9AF-4290-A3F2-5DE0FB439D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BF9B9D-F9AF-4290-A3F2-5DE0FB439D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8356F33E-C296-498C-A580-54D514391F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8356F33E-C296-498C-A580-54D514391F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8356F33E-C296-498C-A580-54D514391F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8356F33E-C296-498C-A580-54D514391F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A151F75C-C87F-49FC-B1DE-568906F5C56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A151F75C-C87F-49FC-B1DE-568906F5C56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A151F75C-C87F-49FC-B1DE-568906F5C56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A151F75C-C87F-49FC-B1DE-568906F5C56E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13169A90-4CB2-4B71-8922-390D039CB0E7}
+	EndGlobalSection
+EndGlobal
