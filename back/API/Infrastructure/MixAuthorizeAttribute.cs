@@ -50,15 +50,6 @@ internal sealed class MixAuthorizeAttribute : Attribute, IAsyncActionFilter
             }
         }
 
-        if (isSecret)
-        {
-            if (!IsCorrectSecret(context, configuration, token))
-            {
-                context.Result = unauthorized;
-                return;
-            }
-        }
-
         await next();
     }
 
@@ -79,13 +70,7 @@ internal sealed class MixAuthorizeAttribute : Attribute, IAsyncActionFilter
 
         return (last, isSecret, isBearer);
     }
-
-    private bool IsCorrectSecret(ActionExecutingContext context, IConfiguration configuration, string headerKey)
-    {
-        var settings = configuration.GetSection(nameof(SettingsDto.Secret)).Get<SettingsDto.Secret>();
-        return headerKey == settings.Authorization;
-    }
-
+    
     private (bool IsCorrect, IActionResult Result) IsCorrectBearer(ActionExecutingContext context, IConfiguration configuration, string accessToken)
     {
         var token = new JsonWebTokenHandler().ValidateToken(accessToken, JwtBuilder.Parameters(configuration));

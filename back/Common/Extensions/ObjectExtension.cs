@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Xml;
 
 namespace Common.Extensions;
 
@@ -17,7 +18,12 @@ public static class ObjectExtension
 
     public static string ToJson<T>(this T x)
     {
-        return JsonSerializer.Serialize(x);
+        var options = new JsonSerializerOptions()
+        {
+            WriteIndented = true
+        };
+
+        return JsonSerializer.Serialize(x, options);
     }
 
     public static string ToJson<T>(this T x, ReferenceHandler rh)

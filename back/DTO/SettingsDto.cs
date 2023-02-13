@@ -11,19 +11,6 @@ public static class SettingsDto
         public string BaseSuffixUri { get; init; }
     }
 
-    public sealed record Mail
-    {
-        public string DisplayName { get; init; }
-
-        public string UserName { get; init; }
-
-        public string Password { get; init; }
-
-        public string SmtpServer { get; init; }
-
-        public int Port { get; init; }
-    }
-
     public sealed record Cors
     {
         public IEnumerable<string> Origins { get; init; }
@@ -48,10 +35,5 @@ public static class SettingsDto
         public string BaseUri { get; init; }
 
         public string Secret { get; init; }
-    }
-
-    public sealed record Secret
-    {
-        public string Authorization { get; init; }
     }
 }

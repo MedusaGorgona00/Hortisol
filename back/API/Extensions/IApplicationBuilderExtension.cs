@@ -1,7 +1,7 @@
 ﻿using System.IO;
+using BLL;
 using Common.Extensions;
 using Common.Helpers;
-using DAL.EF;
 using DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -45,13 +45,5 @@ internal static class IApplicationBuilderExtension
             x.EnableFilter();
             x.ShowExtensions();
         });
-    }
-
-    internal static void AutoMigrateDb(this IApplicationBuilder app)
-    {
-        using var scope = app.ApplicationServices.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-        context.Database.Migrate();
     }
 }

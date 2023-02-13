@@ -63,7 +63,6 @@ internal static class WebApplicationBuilderExtension
 
         services.RegisterIOptions(configuration);
         services.RegisterConnectionString(configuration);
-        services.RegisterAuth();
         services.RegisterJwtAuthorization(configuration);
 
         services.RegisterServices();
