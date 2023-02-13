@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using API.Infrastructure;
 using API.Services;
+using BLL;
 using BLL.Services.Dto;
 using BLL.Services.Tables;
 using Common.Helpers;
-using DAL.EF;
-using DAL.Entities.Users;
 using DTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
@@ -48,31 +47,15 @@ internal static class IServiceCollectionExtension
     {
         services.Configure<AuthDto.Jwt>(x => configuration.GetSection(nameof(AuthDto.Jwt)).Bind(x));
         services.Configure<SettingsDto.VirtualDir>(x => configuration.GetSection(nameof(SettingsDto.VirtualDir)).Bind(x));
-        services.Configure<SettingsDto.Mail>(x => configuration.GetSection(nameof(SettingsDto.Mail)).Bind(x));
         services.Configure<SettingsDto.Cors>(x => configuration.GetSection(nameof(SettingsDto.Cors)).Bind(x));
         services.Configure<SettingsDto.ServiceUri>(x => configuration.GetSection(nameof(SettingsDto.ServiceUri)).Bind(x));
     }
 
     internal static void RegisterConnectionString(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Default")));
+        services.AddDbContext<AppDbContext>(x => x.UseNpgsql(configuration.GetConnectionString("Default")));
     }
-
-    internal static void RegisterAuth(this IServiceCollection services)
-    {
-        services.AddIdentityCore<User>(x =>
-            {
-                x.Password.RequiredLength = 6;
-                x.Password.RequireLowercase = false;
-                x.Password.RequireUppercase = false;
-                x.Password.RequireNonAlphanumeric = false;
-                x.Password.RequireDigit = false;
-            })
-            .AddRoles<Role>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
-    }
-
+    
     internal static void RegisterJwtAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -95,8 +78,8 @@ internal static class IServiceCollectionExtension
     {
         services.AddScoped<AppDbContext>();
         services.AddTransient<AuthService>();
-        services.AddTransient<SavedFileService>();
-        services.AddTransient<SavedFileDtoService>();
+        services.AddTransient<ReportService>();
+        services.AddTransient<ReportDtoService>();
     }
 
     internal static void RegisterSwagger(this IServiceCollection services)
