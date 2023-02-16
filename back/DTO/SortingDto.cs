@@ -4,18 +4,17 @@ using Common.Enums;
 namespace DTO;
 
 /// <summary>
-/// 
+/// Sorting model
 /// </summary>
 public sealed record SortingDto
 {
     /// <summary>
-    /// 
+    /// Type of sorting
     /// </summary>
-    [Required]
-    public SortType Type { get; init; }
+    public SortType? SortType { get; init; }
 
     /// <summary>
-    /// 
+    /// Sorting by field
     /// </summary>
     public string Field { get; init; }
 }

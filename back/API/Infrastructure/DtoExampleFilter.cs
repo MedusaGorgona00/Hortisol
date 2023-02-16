@@ -1,4 +1,5 @@
-﻿using Common.Helpers;
+﻿using System;
+using Common.Helpers;
 using DTO;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -26,7 +27,7 @@ internal class DtoExampleFilter : ISchemaFilter
     {
         schema.Example = schema.Type switch
         {
-            "string" when schema.Format == "date-time" => new OpenApiString(RandomDateTime.Minutes().ToString("yyyy-MM-ddTHH:mm:ssZ")),
+            "string" when schema.Format == "date-time" => new OpenApiString(DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")),
             "string" => new OpenApiString($"_string{Counter}"),
             "integer" => new OpenApiInteger(DefaultInt),
             "decimal" => new OpenApiDouble(DefaultDouble),
@@ -39,6 +40,16 @@ internal class DtoExampleFilter : ISchemaFilter
                 [$"{nameof(AuthDto.Login.UserName)}"] = new OpenApiString("admin"),
                 [$"{nameof(AuthDto.Login.Password)}"] = new OpenApiString("x"),
             };
+
+        if (context.Type == typeof(FiltrationDto))
+        {
+            var utc = DateTime.UtcNow;
+            schema.Example = new OpenApiObject
+            {
+                [$"{nameof(FiltrationDto.StartDate)}"] = new OpenApiString($"{new DateTime(utc.Year, utc.Month, utc.Day)}"),
+                [$"{nameof(FiltrationDto.EndDate)}"] = new OpenApiString($"{utc}"),
+            };
+        }
 
         else
             schema.Example = schema.Example;
