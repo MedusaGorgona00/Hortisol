@@ -78,7 +78,8 @@ public static class EnumExtension
             .Select(x => new TD
             {
                 Id = Convert.ToInt32(x),
-                Name = x.Description(),
+                Name = x.Name(),
+                Description = x.Description(),
             });
     }
 }

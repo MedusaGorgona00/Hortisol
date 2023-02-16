@@ -135,4 +135,19 @@ public static class StringExtension
     {
         return string.IsNullOrWhiteSpace(str);
     }
+
+    public static string Format(this string str, params string[] lst)
+    {
+        return string.Format(str, lst);
+    }
+
+    public static string Join(this string[] lst)
+    {
+        return string.Join(", ", lst);
+    }
+
+    public static string Join(this IEnumerable<string> lst)
+    {
+        return string.Join(", ", lst);
+    }
 }

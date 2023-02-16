@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Enums;
 using Common.Extensions;
 
 namespace Common.Helpers;
@@ -29,5 +30,101 @@ public static class AppConstants
     public static string TempSuffixOfPath { get; } = "Temp";
     #endregion
 
-    public static string ExcelContentType => "application/vnd.ms-excel";
+    #region Report
+    public static Dictionary<StateType, Dictionary<FilterType, string>> DefaultSort
+        => new()
+        {
+            {
+                StateType.Washington,
+                new Dictionary<FilterType, string>
+                {
+                    {
+                        FilterType.Total,
+                        ""
+                    },
+                    {
+                        FilterType.ByGrade,
+                        "order by \"Grade\" nulls last"
+                    },
+                    {
+                        FilterType.ByCompany,
+                        "order by p.partner nulls last, p.city"
+                    },
+                }
+            },
+            {
+                StateType.Illinois,
+                new Dictionary<FilterType, string>
+                {
+                    {
+                        FilterType.SmallPackage,
+                        "order by county nulls last, \"Product\""
+                    },
+                    {
+                        FilterType.LargePackage,
+                        "order by county nulls last, \"N\", \"P\", \"K\""
+                    },
+                }
+            }
+        };
+
+    public static Dictionary<StateType, Dictionary<FilterType, string[]>> AllowedSort
+        => new()
+        {
+            {
+                StateType.Washington,
+                new Dictionary<FilterType, string[]>
+                {
+                    {
+                        FilterType.Total,
+                        new []{ "Row", "Round", "Num" }
+                    },
+                    {
+                        FilterType.ByGrade,
+                        new []{ "Row", "Grade", "Weight" }
+                    },
+                    {
+                        FilterType.ByCompany,
+                        new []{ "Row", "Company", "City", "Weight" }
+                    },
+                }
+            },
+            {
+                StateType.Illinois,
+                new Dictionary<FilterType, string[]>
+                {
+                    {
+                        FilterType.SmallPackage,
+                        new []{ "Row", "Product", "County", "Weight" }
+                    },
+                    {
+                        FilterType.LargePackage,
+                        new []{ "Row", "N", "P", "K", "County", "Weight" }
+                    },
+                }
+            }
+        };
+
+    public static Dictionary<StateType, FilterType[]> AllowedFilters
+        => new()
+        {
+            {
+                StateType.Washington,
+                new[]
+                {
+                    FilterType.Total,
+                    FilterType.ByGrade,
+                    FilterType.ByCompany,
+                }
+            },
+            {
+                StateType.Illinois,
+                new[]
+                {
+                    FilterType.SmallPackage,
+                    FilterType.LargePackage,
+                }
+            },
+        };
+    #endregion
 }

@@ -70,19 +70,18 @@ namespace Common.Resources {
         ///		product_qty as quantity
         ///	from public.account_invoice_out_report
         ///	where country_id = 235
-        ///          and &quot;date&quot; between {0} and {1}
         ///          and shipping_state_id = 14
         ///          and main_categ_id in (7, 11)
-        ///          and total_weight &gt; 0
+        ///          and &quot;date&quot; between {0} and {1}
         ///          and product_weight &gt; 5
+        ///          -- and total_weight &gt; 0
         ///),
         ///counties as (
         ///	select
         ///		id as county_id,
         ///		&quot;name&quot; as county
         ///	from public.res_country_county
-        ///),
-        ///g [rest of string was truncated]&quot;;.
+        ///), [rest of string was truncated]&quot;;.
         /// </summary>
         public static string IllinoisLargePackage {
             get {
@@ -100,19 +99,18 @@ namespace Common.Resources {
         ///		product_qty as quantity
         ///	from public.account_invoice_out_report
         ///	where country_id = 235
-        ///          and &quot;date&quot; between {0} and {1}
         ///          and shipping_state_id = 14
         ///          and main_categ_id in (7, 11)
-        ///          and total_weight &gt; 0
+        ///          and &quot;date&quot; between {0} and {1}
         ///          and product_weight &lt;= 5
+        ///          -- and total_weight &gt; 0
         ///),
         ///counties as (
         ///	select
         ///		id as county_id,
         ///		&quot;name&quot; as county
         ///	from public.res_country_county
-        ///),
-        /// [rest of string was truncated]&quot;;.
+        ///) [rest of string was truncated]&quot;;.
         /// </summary>
         public static string IllinoisSmallPackage {
             get {
@@ -121,21 +119,27 @@ namespace Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT 
-        ///    trim(substring(par.commercial_company_name, &apos;^[^-]+&apos;)) as company,
-        ///    par.city,
-        ///    SUM(rep.total_weight), 
-        ///    ROUND(SUM(rep.total_weight) / 2000, 2) as ustonns
-        ///FROM public.account_invoice_out_report AS rep
-        ///LEFT JOIN public.fertilizer_grade AS gr
-        ///    ON rep.grade = gr.id
-        ///LEFT JOIN public.res_partner AS par
-        ///    ON rep.partner_shipping_id = par.id
-        ///WHERE
-        ///    rep.country_id = 235 
-        ///    AND rep.date BETWEEN {0} AND {1}
-        ///    AND rep.shipping_state_id = 48
-        ///    AND rep.main_categ_id IN (7, [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to with report as (
+        ///	select
+        ///		partner_shipping_id as partner_id,
+        ///		total_weight as weight
+        ///	from public.account_invoice_out_report
+        ///	where country_id = 235
+        ///          and shipping_state_id = 48
+        ///          and main_categ_id in (7, 11)
+        ///          and &quot;date&quot; between {0} and {1}
+        ///          -- and total_weight &gt; 0
+        ///),
+        ///partners as (
+        ///	select
+        ///		id as partner_id,
+        ///		trim(substring(commercial_company_name, &apos;^[^-]+&apos;)) as partner,
+        ///		city
+        ///	from public.res_partner
+        ///)
+        ///select
+        ///	row_number() over() as &quot;Row&quot;,
+        ///	p.partn [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WashingtonByCompany {
             get {
@@ -144,18 +148,29 @@ namespace Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT gr.grade, ROUND(SUM(rep.total_weight) / 2000, 2) , SUM(rep.total_weight) / 2000 as Num
-        ///FROM public.account_invoice_out_report AS rep
-        ///LEFT JOIN public.fertilizer_grade AS gr
-        ///    ON rep.grade = gr.id
-        ///WHERE
-        ///  rep.country_id = 235
-        ///  AND rep.date BETWEEN {0} AND {1}
-        ///  AND rep.shipping_state_id = 48
-        ///  AND rep.main_categ_id IN (7, 11)
-        ///GROUP BY 
-        ///  gr.grade
-        ///HAVING SUM(rep.total_weight) &gt; 0.
+        ///   Looks up a localized string similar to with report as (
+        ///	select
+        ///		product_id,
+        ///		grade as grade_id,
+        ///		total_weight as weight,
+        ///		product_qty as quantity
+        ///	from public.account_invoice_out_report
+        ///	where country_id = 235
+        ///          and shipping_state_id = 48
+        ///          and main_categ_id in (7, 11)
+        ///          and &quot;date&quot; between {0} and {1}
+        ///          -- and total_weight &gt; 0
+        ///),
+        ///grades as (
+        ///	select
+        ///		id as grade_id,
+        ///		grade
+        ///	from public.fertilizer_grade
+        ///)
+        ///select
+        ///	row_number() over() as &quot;Row&quot;,
+        ///	coalesce(c.grade, g.grade) as &quot;Grade&quot;,
+        ///	rou [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WashingtonByGrade {
             get {
@@ -164,7 +179,9 @@ namespace Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT ROUND(SUM(rep.total_weight) / 2000, 2) , SUM(rep.total_weight) / 2000 as Num
+        ///   Looks up a localized string similar to SELECT row_number() over() as &quot;Row&quot;,
+        ///	ROUND(SUM(rep.total_weight) / 2000, 2) as &quot;Round&quot;, 
+        ///	SUM(rep.total_weight) / 2000 as &quot;Num&quot;
         ///FROM public.account_invoice_out_report AS rep
         ///LEFT JOIN public.fertilizer_grade AS gr
         ///    ON rep.grade = gr.id
@@ -172,7 +189,8 @@ namespace Common.Resources {
         ///  rep.country_id = 235  
         ///  AND rep.date BETWEEN {0} AND {1}
         ///  AND rep.shipping_state_id = 48
-        ///  AND rep.main_categ_id IN (7, 11).
+        ///  AND rep.main_categ_id IN (7, 11)
+        ///  {2}.
         /// </summary>
         public static string WashingtonTotal {
             get {
